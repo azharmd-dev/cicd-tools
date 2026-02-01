@@ -1,7 +1,7 @@
 
 resource "aws_instance" "jenkins" {
   ami           = local.ami_id
-  instance_type = "t3.small"
+  instance_type = "m7i-flex.large"
   vpc_security_group_ids = [aws_security_group.main.id]
   subnet_id = "subnet-02f3208be02af9b09" #replace your Subnet in default VPC
 
