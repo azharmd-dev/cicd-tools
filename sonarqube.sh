@@ -20,7 +20,7 @@ swapon /swapfile
 cd /opt
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.6.0.92116.zip
 unzip sonarqube-*.zip
-mv sonarqube-* sonarqube
+mv sonarqube-10.6.0.92116 sonarqube
 
 useradd sonar
 chown -R sonar:sonar /opt/sonarqube
