@@ -41,19 +41,19 @@ resource "aws_instance" "jenkins_agent" {
 
 resource "aws_instance" "sonar" {
 count         = var.sonar ? 1 : 0
-ami           = data.aws_ami.devops_practice.id
+ami           = local.ami_id
 instance_type = "t3.small"
 
 vpc_security_group_ids = [aws_security_group.main.id]
 subnet_id              = "subnet-02f3208be02af9b09"
-key_name               = "robomart"
+key_name               = "sshacce"
 
 root_block_device {
 volume_size = 30
 volume_type = "gp3"
 }
 
-user_data = file("sonar-install-rhel.sh")
+user_data = file("sonarqube.sh")
 
 tags = merge(
 local.common_tags,
@@ -107,10 +107,11 @@ count = var.sonar ? 1 : 0
 zone_id = var.zone_id
 name    = "sonar.${var.zone_name}"
 type    = "A"
-ttl     = 60
-records = [aws_instance.sonar.public_ip]
+ttl     = 1
+records = [aws_instance.sonar[count.index].public_ip]
 allow_overwrite = true
 }
+
 
 
 resource "aws_route53_record" "jenkins-agent" {
