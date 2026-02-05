@@ -1,9 +1,8 @@
 #!/bin/bash
 set -xe
 
-# Update system
+# Install required packages ONLY (no full system update)
 
-dnf update -y
 dnf install -y java-17-openjdk wget unzip cloud-utils-growpart
 
 # Resize disk
