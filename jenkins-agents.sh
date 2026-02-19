@@ -58,4 +58,4 @@ tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
 
 #K9s
-curl -sS https://webinstall.dev/k9s | bash
+su - ec2-user -c "curl -sS https://webinstall.dev/k9s | bash"
